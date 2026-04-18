@@ -52,7 +52,7 @@
     .button {
       border:none; text-decoration:none; display:inline-flex; align-items:center; justify-content:center;
       padding:14px 18px; border-radius:999px; font-weight:600; box-shadow: var(--shadow);
-      background: linear-gradient(135deg, #2b1e1c, #523731); color:white;
+      background: linear-gradient(135deg, #2b1e1c, #523731); color:white; cursor:pointer;
     }
     .button.alt { background: rgba(255,255,255,.78); color:var(--text); border:1px solid var(--line); box-shadow:none; }
     .hero-card { background: var(--card); border: 1px solid rgba(255,255,255,.8); border-radius: 32px; padding:18px; box-shadow: var(--shadow); }
@@ -116,6 +116,7 @@
         <div class="hero-actions">
           <a class="button" href="#beginning">Start the story</a>
           <a class="button alt" href="#wishes">Play the birthday wishes</a>
+          <button class="button alt" id="musicToggle" type="button">🎵 Play Song</button>
         </div>
         <div class="intro-note">
           Happy 30th birthday, Astha. This is a scrapbook in website form — from tiny childhood moments and old scanned treasures to family hugs, travel days, proud milestones, and the beautiful new chapters still unfolding. Every photo here feels like proof of how loved you are.
@@ -314,18 +315,86 @@ Wishing you many more years of happiness, success, and good health. You aren't a
     <img alt="Expanded photo" id="lightboxImage">
   </div>
 
+  <audio id="bgMusic" loop preload="auto">
+    <source src="assets/audio/photograph.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
-    document.querySelectorAll('.tile img').forEach(img => {{
-      img.addEventListener('click', () => {{
+
+    document.querySelectorAll('.tile img').forEach(img => {
+      img.addEventListener('click', () => {
         lightboxImage.src = img.src;
         lightbox.classList.add('open');
-      }});
-    }});
+      });
+    });
+
     document.querySelector('.close').addEventListener('click', () => lightbox.classList.remove('open'));
-    lightbox.addEventListener('click', (e) => {{ if (e.target === lightbox) lightbox.classList.remove('open'); }});
-    document.addEventListener('keydown', (e) => {{ if (e.key === 'Escape') lightbox.classList.remove('open'); }});
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) lightbox.classList.remove('open');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') lightbox.classList.remove('open');
+    });
+
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const videos = document.querySelectorAll('video');
+
+    let musicStartedByUser = false;
+    let shouldResumeAfterVideo = false;
+
+    bgMusic.volume = 0.12;
+
+    musicToggle.addEventListener('click', async () => {
+      try {
+        if (bgMusic.paused) {
+          await bgMusic.play();
+          musicStartedByUser = true;
+          musicToggle.textContent = '⏸ Pause Song';
+        } else {
+          bgMusic.pause();
+          shouldResumeAfterVideo = false;
+          musicToggle.textContent = '🎵 Play Song';
+        }
+      } catch (error) {
+        console.error('Unable to play background music:', error);
+      }
+    });
+
+    videos.forEach(video => {
+      video.addEventListener('play', () => {
+        videos.forEach(otherVideo => {
+          if (otherVideo !== video) {
+            otherVideo.pause();
+          }
+        });
+
+        if (musicStartedByUser && !bgMusic.paused) {
+          shouldResumeAfterVideo = true;
+          bgMusic.pause();
+          musicToggle.textContent = '🎵 Resume Song';
+        }
+      });
+
+      const tryResumeMusic = () => {
+        const anyVideoPlaying = Array.from(videos).some(v => !v.paused && !v.ended);
+        if (!anyVideoPlaying && musicStartedByUser && shouldResumeAfterVideo) {
+          bgMusic.play()
+            .then(() => {
+              musicToggle.textContent = '⏸ Pause Song';
+            })
+            .catch(error => {
+              console.error('Unable to resume background music:', error);
+            });
+          shouldResumeAfterVideo = false;
+        }
+      };
+
+      video.addEventListener('pause', tryResumeMusic);
+      video.addEventListener('ended', tryResumeMusic);
+    });
   </script>
 </body>
 </html>
