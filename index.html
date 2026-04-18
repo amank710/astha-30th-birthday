@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astha at 30</title>
+  <style>
+    :root {
+      --bg: #fff8f6;
+      --card: rgba(255,255,255,0.72);
+      --text: #2b1e1c;
+      --muted: #6c5b58;
+      --rose: #d66b85;
+      --gold: #d4a85d;
+      --line: rgba(73,39,33,0.12);
+      --shadow: 0 20px 60px rgba(77, 41, 33, 0.10);
+      --radius: 26px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,219,225,0.85), transparent 30%),
+        radial-gradient(circle at top right, rgba(255,233,197,0.6), transparent 26%),
+        linear-gradient(180deg, #fff8f6 0%, #fffdfb 55%, #fff6f0 100%);
+    }
+    img { display: block; width: 100%; }
+    a { color: inherit; }
+    .container { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(255, 248, 246, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { display:flex; justify-content:space-between; align-items:center; padding:14px 0; gap:16px; }
+    .brand { font-weight: 800; letter-spacing: -.03em; }
+    .brand span { color: var(--rose); }
+    .nav-links { display:flex; gap:14px; flex-wrap:wrap; font-size:14px; color:var(--muted); }
+    .nav-links a { text-decoration:none; padding:8px 12px; border-radius:999px; }
+    .nav-links a:hover { background: rgba(214,107,133,.08); color: var(--text); }
+    .hero { padding: 58px 0 30px; }
+    .hero-grid { display:grid; grid-template-columns: 1.1fr .9fr; gap:28px; align-items:center; }
+    .eyebrow { display:inline-flex; gap:10px; align-items:center; font-size:13px; color:var(--muted); padding:8px 12px; background:rgba(255,255,255,.7); border:1px solid var(--line); border-radius:999px; }
+    .eyebrow::before { content:""; width:8px; height:8px; border-radius:50%; background:linear-gradient(135deg, var(--rose), var(--gold)); display:block; }
+    h1 { font-size: clamp(44px, 8vw, 88px); line-height: .95; margin: 14px 0 18px; letter-spacing: -.05em; }
+    .lead { font-size: clamp(18px, 2.4vw, 22px); line-height:1.6; color:var(--muted); max-width: 680px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:26px; }
+    .button {
+      border:none; text-decoration:none; display:inline-flex; align-items:center; justify-content:center;
+      padding:14px 18px; border-radius:999px; font-weight:600; box-shadow: var(--shadow);
+      background: linear-gradient(135deg, #2b1e1c, #523731); color:white;
+    }
+    .button.alt { background: rgba(255,255,255,.78); color:var(--text); border:1px solid var(--line); box-shadow:none; }
+    .hero-card { background: var(--card); border: 1px solid rgba(255,255,255,.8); border-radius: 32px; padding:18px; box-shadow: var(--shadow); }
+    .hero-main { aspect-ratio: 4 / 5; object-fit: cover; border-radius:24px; }
+    .hero-stack { display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:12px; }
+    .hero-stack img { aspect-ratio: 1 / 1.15; object-fit: cover; border-radius:18px; }
+    .intro-note { margin-top:16px; padding:18px 20px; border-radius: 22px; background:rgba(255,255,255,.7); border:1px solid var(--line); color:var(--muted); line-height:1.75; }
+    .stats { display:grid; grid-template-columns: repeat(4,1fr); gap:14px; margin:26px 0 10px; }
+    .stat { background:rgba(255,255,255,.7); border:1px solid var(--line); border-radius:22px; padding:18px; box-shadow: var(--shadow); }
+    .stat strong { display:block; font-size: 28px; margin-bottom:6px; }
+    section.block { padding: 40px 0; }
+    .section-head { display:grid; grid-template-columns: .8fr 1.2fr; gap:20px; align-items:end; margin-bottom:18px; }
+    .section-kicker { color:var(--rose); font-size:13px; text-transform:uppercase; letter-spacing:.22em; font-weight:700; margin-bottom:10px; }
+    h2 { font-size: clamp(32px, 5vw, 52px); line-height: 1; margin:0; letter-spacing:-.04em; }
+    .section-copy { color:var(--muted); line-height:1.75; font-size:17px; }
+    .gallery { columns: 3 260px; column-gap: 16px; }
+    .tile { break-inside: avoid; margin: 0 0 16px; position:relative; overflow:hidden; border-radius: 24px; background:var(--card); border:1px solid rgba(255,255,255,.9); box-shadow: var(--shadow); cursor:pointer; }
+    .tile img { width:100%; height:auto; transition: transform .45s ease; }
+    .tile:hover img { transform: scale(1.03); }
+    .tile .badge { position:absolute; top:12px; left:12px; padding:7px 10px; border-radius:999px; background:rgba(20,16,16,.6); color:#fff; font-size:12px; backdrop-filter: blur(6px); }
+    .video-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap:16px; }
+    .video-card { background:var(--card); border:1px solid rgba(255,255,255,.86); padding:14px; border-radius:24px; box-shadow:var(--shadow); }
+    video { width:100%; border-radius:18px; background:#000; max-height:420px; }
+    .video-card h3 { margin:10px 4px 2px; font-size:16px; }
+    .video-card p { margin:0 4px; color:var(--muted); font-size:13px; }
+    .message { padding: 26px; border-radius:32px; background: linear-gradient(135deg, rgba(255,255,255,.84), rgba(255,245,238,.84)); border:1px solid var(--line); box-shadow:var(--shadow); }
+    .message p { font-size:19px; line-height:1.9; color:var(--muted); }
+    .quote { font-size: clamp(28px, 5vw, 48px); line-height:1.1; letter-spacing:-.04em; margin:0 0 18px; }
+    footer { padding: 18px 0 60px; color:var(--muted); text-align:center; }
+    .lightbox { position:fixed; inset:0; background:rgba(17,12,12,.85); display:none; align-items:center; justify-content:center; padding:20px; z-index:100; }
+    .lightbox.open { display:flex; }
+    .lightbox img { max-width:min(92vw, 1100px); max-height:86vh; width:auto; border-radius:24px; box-shadow:0 25px 90px rgba(0,0,0,.35); }
+    .close { position:absolute; top:18px; right:18px; border:none; background:rgba(255,255,255,.15); color:white; width:42px; height:42px; border-radius:50%; font-size:26px; cursor:pointer; }
+    @media (max-width: 900px) {
+      .hero-grid, .section-head, .stats { grid-template-columns: 1fr; }
+      .nav-inner { align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Astha <span>at 30</span></div>
+      <div class="nav-links">
+        <a href="#childhood">Childhood</a>
+        <a href="#family">Family</a>
+        <a href="#adventures">Adventures</a>
+        <a href="#milestones">Milestones</a>
+        <a href="#fun">Fun</a>
+        <a href="#wishes">Wishes</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">A website made to celebrate one of the coolest, nicest and most genuine person ever</div>
+        <h1>Thirty years of <br>Astha.</h1>
+        <p class="lead">A little corner of the internet filled with the people, places, laughter, milestones, and memories that made you <em>you</em>.</p>
+        <div class="hero-actions">
+          <a class="button" href="#beginning">Start the story</a>
+          <a class="button alt" href="#wishes">Play the birthday wishes</a>
+        </div>
+        <div class="intro-note">
+          Happy 30th birthday, Astha. This is a scrapbook in website form — from tiny childhood moments and old scanned treasures to family hugs, travel days, proud milestones, and the beautiful new chapters still unfolding. Every photo here feels like proof of how loved you are.
+        </div>
+      </div>
+      <div class="hero-card">
+        <img class="hero-main" src="assets/images/img055.jpeg" alt="Astha smiling on a sunny day" />
+        <div class="hero-stack">
+          <img src="assets/images/img014.jpeg" alt="Astha dressed up for a celebration" />
+          <img src="assets/images/img034.jpeg" alt="Astha in a traditional outfit" />
+          <img src="assets/images/img054.jpeg" alt="Astha bridal portrait" />
+        </div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>30</strong>years of warmth, humor, style, and heart</div>
+      <div class="stat"><strong>47</strong>photos of you, more you, even more you and some loved ones</div>
+      <div class="stat"><strong>20</strong>video wishes from the people who love you</div>
+      <div class="stat"><strong>∞</strong>memories still ahead</div>
+    </div>
+  </header>
+    <section class="block container" id="childhood">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">Childhood</div>
+        <h2>Childhood</h2>
+      </div>
+      <div class="section-copy">The little girl years — tiny smiles, festival outfits, family arms, and the first memories that became stories everyone still tells.</div>
+    </div>
+    <div class="gallery"><figure class="tile"><img src="assets/images/img005.png" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img006.png" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img007.png" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img008.png" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img009.png" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img010.png" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img011.png" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img014.jpeg" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img016.jpeg" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img021.jpeg" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img024.png" alt="Childhood memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img059.jpeg" alt="Childhood memory" loading="lazy"></figure></div>
+  </section>
+  <section class="block container" id="family">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">Family always</div>
+        <h2>Family</h2>
+      </div>
+      <div class="section-copy">The people who have always been in your corner — parents, siblings, traditions, and the kind of love that shows up in every season.</div>
+    </div>
+    <div class="gallery"><figure class="tile"><img src="assets/images/img001.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img002.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img013.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img020.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img022.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img025.png" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img026.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img041.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img042.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img048.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img060.jpeg" alt="Family memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img063.jpeg" alt="Family memory" loading="lazy"></figure></div>
+  </section>
+  <section class="block container" id="adventures">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">Travel & adventures</div>
+        <h2>Travel & Adventures</h2>
+      </div>
+      <div class="section-copy">City moments, scenic stops, dressed-up days, and the snapshots that feel like Astha fully in her element.</div>
+    </div>
+    <div class="gallery"><figure class="tile"><img src="assets/images/img027.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img028.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img029.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img030.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img031.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img040.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img045.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img050.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img053.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img057.jpeg" alt="Travel & Adventures memory" loading="lazy"></figure></div>
+  </section>
+  <section class="block container" id="milestones">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">Milestones</div>
+        <h2>Milestones</h2>
+      </div>
+      <div class="section-copy">The proud moments — the celebrations, the elegant occasions, and the memories that feel like markers of how far she has come.</div>
+    </div>
+    <div class="gallery"><figure class="tile"><img src="assets/images/img004.jpeg" alt="Milestones memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img019.jpeg" alt="Milestones memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img052.jpeg" alt="Milestones memory" loading="lazy"></figure></div>
+  </section>
+  <section class="block container" id="fun">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">Fun & candid</div>
+        <h2>Fun & Candid</h2>
+      </div>
+      <div class="section-copy">The goofy faces, casual moments, spontaneous poses, and the very specific kind of energy that makes Astha Astha.</div>
+    </div>
+    <div class="gallery"><figure class="tile"><img src="assets/images/img012.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img015.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img018.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img023.png" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img038.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img039.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img043.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img044.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img046.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img047.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img049.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img051.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img054.jpeg" alt="Fun & Candid memory" loading="lazy"></figure><figure class="tile"><img src="assets/images/img056.jpeg" alt="Fun & Candid memory" loading="lazy"></figure></div>
+  </section>
+<section class="block container" id="wishes">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">Birthday wishes</div>
+        <h2>Messages in motion</h2>
+      </div>
+      <div class="section-copy">Short videos from the people who wanted to show up for you and celebrate you. Press play, smile, maybe cry a little.</div>
+    </div>
+    <div class="video-grid">
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video02.jpg">
+          <source src="assets/videos/video02.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video03.jpg">
+          <source src="assets/videos/video03.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video04.jpg">
+          <source src="assets/videos/video04.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video05.jpg">
+          <source src="assets/videos/video05.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video06.jpg">
+          <source src="assets/videos/video06.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video08.jpg">
+          <source src="assets/videos/video08.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video09.jpg">
+          <source src="assets/videos/video09.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video10.jpg">
+          <source src="assets/videos/video10.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video11.jpg">
+          <source src="assets/videos/video11.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video12.jpg">
+          <source src="assets/videos/video12.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video13.JPG">
+          <source src="assets/videos/video13.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video14.JPG">
+          <source src="assets/videos/video14.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video15.JPG">
+          <source src="assets/videos/video15.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video16.JPG">
+          <source src="assets/videos/video16.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video17.JPG">
+          <source src="assets/videos/video17.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video18.JPG">
+          <source src="assets/videos/video18.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video01.jpg">
+          <source src="assets/videos/video01.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video19.JPG">
+          <source src="assets/videos/video19.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <video controls preload="metadata" poster="assets/videos/video20.JPG">
+          <source src="assets/videos/video20.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="block container">
+    <div class="message">
+      <div class="section-kicker">For the birthday girl</div>
+      <h2 class="quote">The most loving, caring and cranky person we know</h2>
+      <p>
+        Watching you grow into this amazing person has been great. You have been a fantastic family holiday planner - though you keep saying “I will not plan any holiday together in future” HA HA! 
+Wishing you many more years of happiness, success, and good health. You aren't actually 30, but  18 years old with 12 years of experience. Love you more than you know ❤️
+      </p>
+    </div>
+  </section>
+
+  <footer class="container">
+    Made with love for Astha’s 30th birthday.
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="close" aria-label="Close">×</button>
+    <img alt="Expanded photo" id="lightboxImage">
+  </div>
+
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    document.querySelectorAll('.tile img').forEach(img => {{
+      img.addEventListener('click', () => {{
+        lightboxImage.src = img.src;
+        lightbox.classList.add('open');
+      }});
+    }});
+    document.querySelector('.close').addEventListener('click', () => lightbox.classList.remove('open'));
+    lightbox.addEventListener('click', (e) => {{ if (e.target === lightbox) lightbox.classList.remove('open'); }});
+    document.addEventListener('keydown', (e) => {{ if (e.key === 'Escape') lightbox.classList.remove('open'); }});
+  </script>
+</body>
+</html>
